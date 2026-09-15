@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're in — Summit Web Business Clinic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root{
+    --bg:#06070c;
+    --bg-soft:#0e1018;
+    --card-bg:#10121c;
+    --ink:#ffffff;
+    --ink-soft:#a6afc4;
+    --ink-faint:#6b7280;
+    --line:rgba(255,255,255,.08);
+    --line-strong:rgba(255,255,255,.18);
+    --blue:#5170FF;
+    --blue-dark:#3552f0;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+  }
+  .card{
+    background:var(--card-bg);
+    border:1px solid var(--line-strong);
+    border-radius:8px;
+    max-width:520px;
+    width:100%;
+    padding:44px 36px;
+    text-align:center;
+  }
+  .check{
+    width:56px; height:56px;
+    border-radius:50%;
+    background:var(--blue);
+    display:flex; align-items:center; justify-content:center;
+    margin:0 auto 20px;
+    font-size:24px;
+  }
+  h1{
+    font-family:'Syne', sans-serif;
+    font-weight:700;
+    font-size:28px;
+    line-height:1.2;
+    margin-bottom:12px;
+  }
+  p{
+    color:var(--ink-soft);
+    font-size:15px;
+    line-height:1.6;
+    margin-bottom:8px;
+  }
+  .ref{
+    display:inline-block;
+    margin-top:8px;
+    margin-bottom:24px;
+    font-family:monospace;
+    font-size:13px;
+    color:var(--ink-faint);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:4px 10px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--blue);
+    color:#fff;
+    text-decoration:none;
+    font-weight:600;
+    font-size:15px;
+    padding:14px 28px;
+    border-radius:999px;
+    transition:background .15s ease;
+  }
+  .btn:hover{background:var(--blue-dark);}
+  .note{
+    margin-top:20px;
+    font-size:13px;
+    color:var(--ink-faint);
+  }
+</style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="check"><i class="fa-solid fa-check"></i></div>
+    <h1>Payment received — you're booked in.</h1>
+    <p>Thanks for signing up for the Business Clinic. Pick a time that works for you below.</p>
+    <div id="refBox" class="ref" style="display:none;"></div>
+    <br>
+    <a id="bookBtn" class="btn" href="#" target="_blank" rel="noopener">
+      Schedule Your Call <i class="fa-solid fa-arrow-right"></i>
+    </a>
+    <p class="note">We've also emailed this link to you as a backup — check your inbox (and spam folder) if you don't see it right away.</p>
+  </div>
+
+<script>
+  // ---- Configuration ----
+  // Replace with your real Calendly / Cal.com booking link.
+  var BOOKING_LINK = 'https://calendly.com/summitwebb/30min';
+
+  document.getElementById('bookBtn').href = BOOKING_LINK;
+
+  // Show the payment reference for the customer's records, if present in the URL.
+  var params = new URLSearchParams(window.location.search);
+  var ref = params.get('ref');
+  if(ref){
+    var box = document.getElementById('refBox');
+    box.textContent = 'Reference: ' + ref;
+    box.style.display = 'inline-block';
+  }
+</script>
+
+</body>
+</html>

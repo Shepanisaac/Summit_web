@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Summit Web — The Business Clinic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://js.paystack.co/v2/inline.js"></script>
+<style>
+  :root{
+    --bg:#06070c;
+    --bg-soft:#0e1018;
+    --card-bg:#10121c;
+    --ink:#ffffff;
+    --ink-soft:#a6afc4;
+    --ink-faint:#6b7280;
+    --line:rgba(255,255,255,.08);
+    --line-strong:rgba(255,255,255,.18);
+    --blue:#5170FF;
+    --blue-dark:#3552f0;
+    --radius:2px;
+    --maxw:920px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Syne',sans-serif;
+    font-weight:700;
+    line-height:1.12;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--blue);
+    outline-offset:2px;
+  }
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+  .eyebrow{
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:16px; height:1px;
+    background:var(--blue);
+    display:inline-block;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    padding:26px 0;
+    border-bottom:1px solid var(--line);
+  }
+  header .wrap{display:flex; align-items:center; justify-content:space-between;}
+  .brand{
+    font-family:'Syne',sans-serif;
+    font-weight:800;
+    font-size:18px;
+    letter-spacing:0.01em;
+  }
+  .brand small{
+    display:block;
+    font-family:'Inter',sans-serif;
+    font-weight:500;
+    font-size:10px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin-top:2px;
+  }
+  .nav-cta{
+    font-size:13px;
+    font-weight:600;
+    border:1px solid var(--ink);
+    padding:9px 16px;
+    border-radius:var(--radius);
+    white-space:nowrap;
+    transition:background .15s ease, border-color .15s ease, color .15s ease;
+  }
+  .nav-cta:hover{background:var(--blue); border-color:var(--blue); color:#fff;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:88px 0 64px;
+    border-bottom:1px solid var(--line);
+  }
+  .hero h1{
+    font-size:clamp(34px, 5vw, 54px);
+    max-width:760px;
+  }
+  .hero p.lede{
+    margin-top:22px;
+    max-width:520px;
+    font-size:18px;
+    color:var(--ink-soft);
+  }
+  .hero-actions{
+    margin-top:34px;
+    display:flex;
+    gap:18px;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--blue);
+    color:#fff;
+    font-weight:600;
+    font-size:14px;
+    padding:14px 24px;
+    border-radius:var(--radius);
+    text-decoration:none;
+    border:1px solid var(--blue);
+    transition:background .15s ease, border-color .15s ease;
+  }
+  .btn:hover{background:var(--blue-dark); border-color:var(--blue-dark);}
+  .btn.ghost{
+    background:transparent;
+    color:var(--ink);
+    border:1px solid var(--line-strong);
+  }
+  .btn.ghost:hover{border-color:var(--blue); color:var(--blue);}
+
+  /* ---------- Video ---------- */
+  .video-section{padding:56px 0; border-bottom:1px solid var(--line);}
+  .video-frame{
+    position:relative;
+    max-width:760px;
+    margin:0 auto;
+    aspect-ratio:16/9;
+    background:var(--bg-soft);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  /* Replace this whole .video-frame block's contents with a real embed
+     (Loom / YouTube iframe) when the video is ready. */
+  .video-frame .play-btn{
+    width:64px; height:64px;
+    border-radius:50%;
+    border:1px solid rgba(0,0,0,.12);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    background:#fff;
+    color:#06070c;
+    transition:transform .15s ease, border-color .15s ease, color .15s ease;
+  }
+  .video-frame .play-btn:hover{transform:scale(1.06); border-color:var(--blue); color:var(--blue);}
+  .video-frame .play-btn i{font-size:18px; margin-left:3px;}
+  .video-caption{
+    text-align:center;
+    margin-top:16px;
+    font-size:13px;
+    color:var(--ink-faint);
+  }
+
+  /* ---------- Section shared ---------- */
+  section{padding:80px 0;}
+  .section-head{max-width:600px; margin-bottom:48px;}
+  .section-head h2{font-size:clamp(26px,3.4vw,36px); margin-top:14px;}
+  .section-head p{color:var(--ink-soft); margin-top:14px; font-size:16px;}
+
+  /* ---------- Steps ---------- */
+  .steps{border-top:1px solid var(--line);}
+  .step-row{
+    display:grid;
+    grid-template-columns:64px 1fr;
+    gap:24px;
+    padding:32px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .step-row:first-child{border-top:1px solid var(--line);}
+  .step-num{
+    font-family:'Syne',sans-serif;
+    font-size:26px;
+    color:var(--blue);
+    font-weight:700;
+  }
+  .step-body h3{font-size:19px; font-family:'Inter',sans-serif; font-weight:700;}
+  .step-body p{margin-top:8px; color:var(--ink-soft); max-width:520px;}
+
+  /* ---------- Diagnostic report (signature element) ---------- */
+  .report-card{
+    background:var(--card-bg);
+    border:1px solid var(--line-strong);
+    color:#fff;
+    border-radius:6px;
+    padding:36px 32px 28px;
+    max-width:640px;
+    margin:0 auto;
+  }
+  .report-card .report-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    border-bottom:1px solid rgba(255,255,255,.18);
+    padding-bottom:18px;
+    margin-bottom:6px;
+  }
+  .report-card .report-top .label{
+    font-size:10px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,.55);
+  }
+  .report-card .report-top .title{
+    font-family:'Syne',sans-serif;
+    font-weight:600;
+    font-size:19px;
+    margin-top:6px;
+  }
+  .pulse-wrap{width:120px; height:34px;}
+  .pulse-wrap svg{width:100%; height:100%; display:block;}
+  .pulse-line{
+    fill:none;
+    stroke:var(--blue);
+    stroke-width:1.6;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    stroke-dasharray:220;
+    stroke-dashoffset:220;
+    animation:draw 2.6s ease-in-out infinite;
+  }
+  @keyframes draw{
+    0%{stroke-dashoffset:220;}
+    55%{stroke-dashoffset:0;}
+    100%{stroke-dashoffset:0; opacity:0;}
+  }
+  .finding{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 0;
+    border-bottom:1px solid rgba(255,255,255,.12);
+    font-size:14px;
+  }
+  .finding:last-of-type{border-bottom:none;}
+  .finding .f-name{color:rgba(255,255,255,.92);}
+  .finding .f-status{
+    display:flex; align-items:center; gap:8px;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:0.02em;
+    color:rgba(255,255,255,.7);
+  }
+  .dot{width:7px; height:7px; border-radius:50%; background:var(--blue);}
+  .dot.mid{background:rgba(255,255,255,.55);}
+  .dot.low{background:rgba(255,255,255,.3);}
+  .report-foot{
+    margin-top:18px;
+    padding-top:16px;
+    border-top:1px solid rgba(255,255,255,.18);
+    font-size:12.5px;
+    color:rgba(255,255,255,.6);
+  }
+
+  /* ---------- Reassurance callout ---------- */
+  .callout{
+    border-top:1px solid var(--ink);
+    border-bottom:1px solid var(--ink);
+    padding:52px 0;
+    text-align:center;
+  }
+  .callout blockquote{
+    margin:0 auto;
+    max-width:680px;
+    font-family:'Syne',sans-serif;
+    font-size:clamp(22px,3vw,30px);
+    font-weight:600;
+    line-height:1.35;
+  }
+  .callout cite{
+    display:block;
+    margin-top:18px;
+    font-style:normal;
+    font-size:12px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+  }
+
+  /* ---------- Pricing ---------- */
+  .price-box{
+    max-width:460px;
+    margin:0 auto;
+    border:1px solid var(--line-strong);
+    border-top:3px solid var(--blue);
+    border-radius:var(--radius);
+    padding:40px 36px;
+    text-align:center;
+  }
+  .price-box .amount{
+    font-family:'Syne',sans-serif;
+    font-weight:700;
+    font-size:54px;
+    margin:14px 0 4px;
+  }
+  .price-box .amount span{font-size:20px; color:var(--ink-faint); font-family:'Inter',sans-serif; font-weight:600;}
+  .price-box ul{
+    list-style:none; padding:0; margin:26px 0 30px;
+    text-align:left;
+    display:inline-block;
+  }
+  .price-box li{
+    display:flex; gap:10px; align-items:flex-start;
+    font-size:14px; color:var(--ink-soft);
+    padding:7px 0;
+  }
+  .price-box li i{color:var(--blue); margin-top:3px; font-size:12px;}
+  .price-box .btn{width:100%; justify-content:center;}
+  .price-note{
+    text-align:center;
+    font-size:12.5px;
+    color:var(--ink-faint);
+    margin-top:16px;
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-item:first-child{border-top:1px solid var(--line);}
+  .faq-q{
+    width:100%;
+    background:none;
+    border:none;
+    text-align:left;
+    padding:22px 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    cursor:pointer;
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    font-weight:600;
+    color:var(--ink);
+  }
+  .faq-q i{transition:transform .2s ease, color .2s ease; color:var(--ink-faint); font-size:13px;}
+  .faq-item.open .faq-q i{transform:rotate(45deg); color:var(--blue);}
+  .faq-a{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .25s ease;
+  }
+  .faq-a p{padding-bottom:22px; color:var(--ink-soft); max-width:600px; margin:0;}
+
+  /* ---------- Footer ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:40px 0;
+  }
+  footer .wrap{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;
+  }
+  footer .f-brand{font-size:13px; color:var(--ink-faint);}
+  footer .f-links{display:flex; gap:18px; font-size:13px;}
+  footer .f-links a{color:var(--ink-soft); text-decoration:none;}
+  footer .f-links a:hover{color:var(--blue);}
+
+  @media (max-width:640px){
+    .hero{padding:56px 0 44px;}
+    section{padding:56px 0;}
+    .step-row{grid-template-columns:40px 1fr;}
+    .report-card .report-top{flex-direction:column; gap:14px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .pulse-line{animation:none; stroke-dashoffset:0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">SUMMIT WEB<small>The Business Clinic</small></div>
+    <a href="#book" class="nav-cta">Book a consultation</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">A diagnosis before a prescription</div>
+    <h1 style="margin-top:16px;">Before we sell you anything, we find out if you actually need it.</h1>
+    <p class="lede">A short, honest look at what you're doing now — what's working, what isn't, and whether it's even worth fixing. Then, only if there's a real gap, we tell you exactly what we'd recommend.</p>
+    <div class="hero-actions">
+      <a href="#video" class="btn"><i class="fa-solid fa-play"></i> Watch the 2-minute overview</a>
+      <a href="#book" class="btn ghost">See pricing</a>
+    </div>
+  </div>
+</section>
+
+<section class="video-section" id="video">
+  <div class="wrap">
+    <!--
+       when the video is ready:
+      swap the .video-frame contents for a real <iframe> (Loom/YouTube embed).
+    -->
+    <div class="video-frame">
+      <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+    </div>
+    <p class="video-caption">2 min · How the Business Clinic consultation works</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">How it works</div>
+      <h2>Three steps. No pressure at any of them.</h2>
+      <p>Most agencies start with a pitch. We start with a look at your actual numbers — then let that decide what happens next.</p>
+    </div>
+    <div class="steps">
+      <div class="step-row">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h3>We look at what you're actually doing</h3>
+          <p>Your current marketing, leads, and follow-up — whatever's relevant to your business — reviewed honestly, on a short call.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h3>You get a straight answer</h3>
+          <p>If something's genuinely holding you back, we'll name it plainly. If you're already doing fine and just need more consistency, we'll say that instead — no invented problems.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h3>You decide what happens next</h3>
+          <p>Only if there's a real gap will we recommend a specific service, with a specific price. No obligation to move forward with it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--bg-soft); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head" style="margin-left:auto; margin-right:auto; text-align:center;">
+      <div class="eyebrow" style="justify-content:center;">What the consultation looks like</div>
+      <h2>A real read on where things stand.</h2>
+    </div>
+    <div class="report-card">
+      <div class="report-top">
+        <div>
+          <div class="label">Business Clinic · Findings</div>
+          <div class="title">Sample consultation summary</div>
+        </div>
+        <div class="pulse-wrap">
+          <svg viewBox="0 0 120 34">
+            <path class="pulse-line" d="M0 17 L28 17 L36 4 L46 30 L54 17 L120 17"/>
+          </svg>
+        </div>
+      </div>
+      <div class="finding">
+        <span class="f-name">Lead follow-up speed</span>
+        <span class="f-status"><span class="dot low"></span>Needs attention</span>
+      </div>
+      <div class="finding">
+        <span class="f-name">Ad targeting</span>
+        <span class="f-status"><span class="dot"></span>Healthy</span>
+      </div>
+      <div class="finding">
+        <span class="f-name">Posting consistency</span>
+        <span class="f-status"><span class="dot mid"></span>Monitor</span>
+      </div>
+      <div class="report-foot">Illustrative example — your actual findings depend on your business, and are covered on the call.</div>
+    </div>
+  </div>
+</section>
+
+<section class="callout">
+  <div class="wrap">
+    <blockquote>"If everything checks out, we'll tell you that. We don't upsell just to upsell."</blockquote>
+    <cite>— How every consultation ends, either way</cite>
+  </div>
+</section>
+
+<section id="book">
+  <div class="wrap">
+    <div class="section-head" style="margin-left:auto; margin-right:auto; text-align:center;">
+      <div class="eyebrow" style="justify-content:center;">Get started</div>
+      <h2>Book your consultation</h2>
+    </div>
+    <div class="price-box">
+      <div class="eyebrow" style="justify-content:center;">One-time</div>
+      <div class="amount">$147</div>
+      <ul>
+        <li><i class="fa-solid fa-check"></i> A 30-minute call reviewing your current marketing and operations</li>
+        <li><i class="fa-solid fa-check"></i> A plain-language summary of what's working and what isn't</li>
+        <li><i class="fa-solid fa-check"></i> A specific recommendation only if there's a real gap to close</li>
+        <li><i class="fa-solid fa-check"></i> No obligation to purchase anything afterward</li>
+      </ul>
+      <button id="paystackBtn" class="btn" style="border:none; cursor:pointer; font-family:inherit;">Book Your Consultation </button>
+      <p class="price-note">Secure payment. You'll get a booking link right after.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Email capture modal — shown before Paystack opens -->
+<div id="checkoutModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:999; align-items:center; justify-content:center; padding:20px;">
+  <div style="background:var(--card-bg); border:1px solid var(--line-strong); border-radius:8px; max-width:420px; width:100%; padding:32px;">
+    <h3 style="font-family:'Syne',sans-serif; font-size:20px; margin-bottom:6px;">Almost there</h3>
+    <p style="color:var(--ink-soft); font-size:14px; margin-bottom:20px;">Enter your details so we know where to send your receipt and booking link.</p>
+    <form id="checkoutForm">
+      <label style="display:block; font-size:13px; color:var(--ink-soft); margin-bottom:6px;">Full name</label>
+      <input id="checkoutName" type="text" required placeholder="Jane Doe"
+        style="width:100%; padding:12px 14px; margin-bottom:16px; background:var(--bg); border:1px solid var(--line-strong); border-radius:4px; color:var(--ink); font-family:'Inter',sans-serif; font-size:14px;">
+      <label style="display:block; font-size:13px; color:var(--ink-soft); margin-bottom:6px;">Email address</label>
+      <input id="checkoutEmail" type="email" required placeholder="jane@company.com"
+        style="width:100%; padding:12px 14px; margin-bottom:22px; background:var(--bg); border:1px solid var(--line-strong); border-radius:4px; color:var(--ink); font-family:'Inter',sans-serif; font-size:14px;">
+      <button type="submit" class="btn" style="width:100%; border:none; cursor:pointer; font-family:inherit; margin-bottom:10px;">Continue to Payment</button>
+      <button type="button" id="checkoutCancel" style="width:100%; background:none; border:none; color:var(--ink-faint); font-size:13px; cursor:pointer; font-family:inherit;">Cancel</button>
+    </form>
+  </div>
+</div>
+
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Questions</div>
+      <h2>Before you book</h2>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">What if I don't need anything after the call?<i class="fa-solid fa-plus"></i></button>
+        <div class="faq-a"><p>Then that's the outcome — you walk away with clarity on what's working, and you're not pushed into a service you don't need. That happens, and it's a valid result of the consultation.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is this actually a sales call in disguise?<i class="fa-solid fa-plus"></i></button>
+        <div class="faq-a"><p>No — the call is built around reviewing your business first. Any recommendation only comes after that review, and only if it's genuinely warranted. You'll never leave the call with a price you didn't ask about.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How long until I hear back after paying?<i class="fa-solid fa-plus"></i></button>
+        <div class="faq-a"><p>You'll get a scheduling link immediately after payment to pick a time that works for you.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-brand">Summit Web · Business Clinic</div>
+    <div class="f-links">
+      <a href="mailto:summitweb33@gmail.com">summitweb33@gmail.com</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    var q = item.querySelector('.faq-q');
+    var a = item.querySelector('.faq-a');
+    q.addEventListener('click', function(){
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(openItem){
+        if(openItem !== item){
+          openItem.classList.remove('open');
+          openItem.querySelector('.faq-a').style.maxHeight = null;
+        }
+      });
+      if(isOpen){
+        item.classList.remove('open');
+        a.style.maxHeight = null;
+      } else {
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // --- Email capture modal + Paystack payment ---
+  var modal = document.getElementById('checkoutModal');
+
+  document.getElementById('paystackBtn').addEventListener('click', function(){
+    modal.style.display = 'flex';
+  });
+
+  document.getElementById('checkoutCancel').addEventListener('click', function(){
+    modal.style.display = 'none';
+  });
+
+  document.getElementById('checkoutForm').addEventListener('submit', function(e){
+    e.preventDefault();
+
+    var name = document.getElementById('checkoutName').value.trim();
+    var email = document.getElementById('checkoutEmail').value.trim();
+
+    modal.style.display = 'none';
+
+    var handler = PaystackPop.setup({
+      key: 'pk_live_a25bd0b75be7a0f8acf7975010e81bc012fbc14f', // Paystack PUBLIC key goes here
+      email: email,
+      amount: 147 * 100, // Paystack expects the amount in the smallest currency unit (e.g. kobo for NGN, cents for USD/GHS). $147 -> 14700.
+      currency: 'NGN', // must match a currency your Paystack account supports — check your dashboard settings
+      ref: 'SW-' + Math.floor((Math.random() * 1000000000) + 1),
+      metadata: {
+        custom_fields: [
+          { display_name: "Full Name", variable_name: "full_name", value: name }
+        ]
+      },
+      callback: function(response){
+        // Payment succeeded on the client side. The backend webhook will
+        // independently verify it and email the booking link as a backup —
+        // this redirect just gets the customer to the link right away.
+        window.location.href = 'thank-you.html?ref=' + encodeURIComponent(response.reference) + '&email=' + encodeURIComponent(email);
+      },
+      onClose: function(){
+        // user closed the popup without paying
+      }
+    });
+    handler.openIframe();
+  });
+</script>
+
+</body>
+</html>
